@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+    <div ng-controller="binomialCtrl" style="text-align: center">
+        <p>Binomial Opition Price</p>
+            Stock Price:<br>
+            <input type="number" ng-model="buser.stock"><br>
+            Strike Price:<br>
+            <input type="number" ng-model="buser.strike"><br>
+            Depth:<br>
+            <input type="number" ng-model="buser.depth"><br>
+            Rate:<br>
+            <input type="number" ng-model="buser.rate"><br>
+            U:<br>
+            <input type="number" ng-model="buser.u"><br>
+            D:<br>
+            <input type="number" ng-model="buser.d"><br>
+            <button ng-click="resetb()">RESET</button>
+            <button ng-click="submitBinomial()">Submit</button>
+        <p>{{myValuesb}}</p>
+        <p>form = {{buser}}</p>
+    </div>
+
+    <div ng-controller="leastSquareCtrl" style="text-align: center">
+            <p>Least Opition Price</p>
+            <!--<form novalidate>-->
+                Method:<br>
+                <input type="text" ng-model="luser.method"><br>
+                No of Paths:<br>
+                <input type="number" ng-model="luser.paths"><br>
+                Path Length:<br>
+                <input type="number" ng-model="luser.length"><br>
+                Stock Price (S0):<br>
+                <input type="number" ng-model="luser.stock"><br>
+                Strike Price:<br>
+                <input type="number" ng-model="luser.strike"><br>
+                Rate:<br>
+                <input type="number" ng-model="luser.rate"><br>
+                Volatility:<br>
+                <input type="number" ng-model="luser.volatility"><br>
+                <button ng-click="resetl()">RESET</button>
+                <button ng-click="submitLeastSquare()">Submit</button>
+            <!--</form>-->
+            <p>{{myValuesl}}</p>
+            <p>form = {{luser}}</p>
+    </div>
+    <script src="main.js"></script>
+
+</body>
+</html>
