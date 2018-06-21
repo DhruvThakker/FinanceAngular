@@ -1,4 +1,22 @@
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/home", {
+        templateUrl : "partials/myHome.html"
+    })
+    .when("/binomial", {
+        templateUrl : "partials/binomial.html"
+    })
+    .when("/leastSquares", {
+        templateUrl : "partials/leastSquares.html"
+    })
+    .when("/finiteDifference", {
+        templateUrl : "partials/finiteDifference.html"
+    })
+    .otherwise({
+        templateUrl : "partials/myHome.html"
+    })
+});
 app.controller('binomialCtrl', function($scope,$http) {
     $scope.bmaster = {stock:4, strike:5, depth:2,rate:0.25,u:2,d:0.5};
     $scope.resetb = function() {
@@ -9,7 +27,7 @@ app.controller('binomialCtrl', function($scope,$http) {
     $scope.submitBinomial = function() {
         $http({
             //url : "http://ec2-34-196-11-253.compute-1.amazonaws.com:8080/compute/binomial/?d=0.5&depth=2&rate=0.25&stock=4&strike=5&u=2.0",
-            url: "http://ec2-34-196-11-253.compute-1.amazonaws.com:8080/compute/binomial/",
+            url: "http://ec2-34-196-11-253.compute-1.amazonaws.com:8000/compute/binomial/",
             //url: "http://127.0.0.1:8000/compute/binomial/",
             method: "GET",
             //params:$scope.user
@@ -34,7 +52,7 @@ app.controller('leastSquareCtrl', function($scope,$http) {
     $scope.submitLeastSquare = function() {
         $http({
             //url : "127.0.0.1:8000/compute/leastsquare/?method=neural&paths=8&length=4&stock=10&strike=12&rate=0.1&volatility=0.3",
-            url: "http://ec2-34-196-11-253.compute-1.amazonaws.com:8080/compute/leastsquare/",
+            url: "http://ec2-34-196-11-253.compute-1.amazonaws.com:8000/compute/leastsquare/",
             //url: "http://127.0.0.1:8000/compute/leastsquare/",
             method: "GET",
             //params:$scope.user
@@ -47,5 +65,31 @@ app.controller('leastSquareCtrl', function($scope,$http) {
         console.log('Submit Least');    
     };
     console.log($scope.luser);
+    //$scope.submi();
+});
+app.controller('finiteDifferenceCtrl', function($scope,$http) {
+    $scope.fmaster = {stock:50, strike:50, time:5/12.0,rate:0.1,volatility:0.4,M:20,N:10,delS:5};
+    $scope.resetf = function() {
+        $scope.fuser = angular.copy($scope.fmaster);
+        $scope.myValuesf = null
+    };
+    $scope.resetf();
+    $scope.submitFiniteDifference = function() {
+        $http({
+            //url : "http://www.hulkbuster.tech:8000/compute/finitedifference/?stock=50&strike=50&rate=0.1&volatility=0.4&time=0.41666&M=20&N=10&delS=5",
+            url: "http://ec2-34-196-11-253.compute-1.amazonaws.com:8000/compute/finitedifference/",
+            method: "GET",
+            params: {'stock':$scope.fuser.stock,'strike':$scope.fuser.strike,'time':$scope.fuser.time,'rate':$scope.fuser.rate,'volatility':$scope.fuser.volatility,'M':$scope.fuser.M,'N':$scope.fuser.N,'delS':$scope.fuser.delS}
+          })
+          .then(function(response) {
+            if (response.status==200)
+              $scope.myValuesf = response.data.complex_result;
+            else{
+                $scope.myValuesf = response;
+            }
+          });
+          console.log('Submit FiniteDifference');  
+    };
+    console.log($scope.fuser);
     //$scope.submi();
 });

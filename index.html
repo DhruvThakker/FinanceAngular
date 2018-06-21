@@ -1,89 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 <head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href ="css/main.css"></link>
 </head>
 <body>
     <nav>
         <div class="nav-wrapper teal">
-        <a href="#" class="brand-logo">Computational Finance</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <!--<li><a href="sass.html">Sass</a></li>-->
-        </ul>
+            <a href="#!/home" class="brand-logo">Computational Finance</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <!--<li><a href="sass.html">Sass</a></li>-->
+            </ul>
         </div>
     </nav>
+    <a href="#!/leastSquares">Least Squares</a><br>
+    <a href="#!/binomial">Binomial</a><br>
+    <a href="#!/finiteDifference">Finite Difference</a>
     <div class="container">
-        <div class="row z-depth-2">
-            <p class="center-align">Comparing Option Pricing Methods</p>
-            <div class="col s12 m12 l12">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">American Options</span>
-                        <p>An American option is an option that can be exercised anytime during its life. 
-                            American options allow option holders to exercise the option at any time prior 
-                            to and including its maturity date, thus increasing the value of the option to 
-                            the holder relative to European options, which can only be exercised at maturity.</p>
-                    </div>
-                    <div class="card-action">
-                        <!--<a href="#">This is a link</a>-->
-                        <!--<a href="#">This is a link</a>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row z-depth-3">
-            <div class="col l6 blue lighten-1 lime-text text-lighten-2" ng-controller="binomialCtrl">
-                <h4 class="z-depth-4">Binomial Option Price</h4>
-                    Stock Price:<br>
-                    <input type="number" ng-model="buser.stock"><br>
-                    Strike Price:<br>
-                    <input type="number" ng-model="buser.strike"><br>
-                    Depth:<br>
-                    <input type="number" ng-model="buser.depth"><br>
-                    Rate:<br>
-                    <input type="number" ng-model="buser.rate"><br>
-                    U:<br>
-                    <input type="number" ng-model="buser.u"><br>
-                    D:<br>
-                    <input type="number" ng-model="buser.d"><br><br><br><br>
-                    <button class="waves-effect waves-light btn lime lighten-2 indigo-text" ng-click="resetb()">RESET</button>
-                    <button class="waves-effect waves-light btn lime lighten-2 indigo-text" ng-click="submitBinomial()">Submit</button>
-                <h6 class="card-label amber-text">Result: {{myValuesb}}</h6>
-                <!--<p class="card-label">form = {{buser}}</p>-->
-            </div>
-
-            <div class="col l6 lime lighten-1 blue-text text-lighten-2" ng-controller="leastSquareCtrl">
-                    <h4 class="z-depth-4">Least Square Option Price</h4>
-                    <!--<form novalidate>-->
-                        Method:<br>
-                        <input type="text" ng-model="luser.method"><br>
-                        No of Paths:<br>
-                        <input type="number" ng-model="luser.paths"><br>
-                        Path Length:<br>
-                        <input type="number" ng-model="luser.length"><br>
-                        Stock Price (S0):<br>
-                        <input type="number" ng-model="luser.stock"><br>
-                        Strike Price:<br>
-                        <input type="number" ng-model="luser.strike"><br>
-                        Rate:<br>
-                        <input type="number" ng-model="luser.rate"><br>
-                        Volatility:<br>
-                        <input type="number" ng-model="luser.volatility"><br>
-                        <button class="waves-effect waves-light btn blue yellow-text" ng-click="resetl()">RESET</button>
-                        <button class="waves-effect waves-light btn blue yellow-text" ng-click="submitLeastSquare()">Submit</button>
-                    <!--</form>-->
-                    <h6 class="card-label indigo-text">Result: {{myValuesl}}</h6>
-                    <!--<p class="card-label flow-text">form = {{luser}}</p>-->
-            </div>
-        </div>
+        <div ng-view></div>    
     </div>
     <script src="js/main.js"></script>
-    <script src="css/materialize.css"></script>
     <script type="text/javascript" src="js/materialize.js"></script>
-
+    
 </body>
 </html>
