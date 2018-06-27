@@ -1,32 +1,40 @@
 <div class="row z-depth-3">
-        <div class="lime lighten-1 blue-text text-lighten-2" ng-controller="leastSquareCtrl">
-            <h4 class="z-depth-4">Least Square Option Price</h4>
-            Method:
-            <br>
-            <input type="text" ng-model="luser.method">
-            <br> No of Paths:
-            <br>
-            <input type="number" ng-model="luser.paths">
-            <br> Path Length:
-            <br>
-            <input type="number" ng-model="luser.length">
-            <br> Stock Price (S0):
-            <br>
-            <input type="number" ng-model="luser.stock">
-            <br> Strike Price:
-            <br>
-            <input type="number" ng-model="luser.strike">
-            <br> Rate:
-            <br>
-            <input type="number" ng-model="luser.rate">
-            <br> Volatility:
-            <br>
-            <input type="number" ng-model="luser.volatility">
-            <br>
-            <button class="waves-effect waves-light btn blue yellow-text" ng-click="resetl()">RESET</button>
-            <button class="waves-effect waves-light btn blue yellow-text" ng-click="submitLeastSquare()">Submit</button>
-            <!--</form>-->
-            <h6 class="card-label indigo-text">Result: {{myValuesl}}</h6>
-            <p class="card-label flow-text">form = {{luser}}</p>
+    <div class="red lighten-1 lime-text text-lighten-2" ng-controller="leastSquareCtrl">
+        <h4 class="z-depth-4">Least Square Option Price</h4>
+        <div class="row">
+            Method: &emsp;
+            <label class="lime-text text-lighten-2">
+                <input class="with-gap" name="methods" type="radio" checked value="normal" ng-model="luser.method"/>
+                <span>Normal &emsp; &emsp;</span>
+            </label>
+            <label class="lime-text text-lighten-2">
+                <input class="with-gap" name="methods" type="radio" value="neural" ng-model="luser.method"/>
+                <span>Neural</span>
+            </label>
         </div>
+        No of Paths:
+        <br>
+        <input type="number" ng-model="luser.paths">
+        <br> Path Length:
+        <br>
+        <input type="number" ng-model="luser.length">
+        <br> Stock Price (S0):
+        <br>
+        <input type="number" ng-model="luser.stock">
+        <br> Strike Price:
+        <br>
+        <input type="number" ng-model="luser.strike">
+        <br> Rate:
+        <br>
+        <input type="number" ng-model="luser.rate">
+        <br> Volatility:
+        <br>
+        <input type="number" ng-model="luser.volatility">
+        <br>
+        <button class="waves-effect waves-light btn blue yellow-text" ng-click="resetl()">RESET</button>
+        <button class="waves-effect waves-light btn blue yellow-text" ng-click="submitLeastSquare()">Submit</button>
+        <!--</form>-->
+        <h6 class="card-label indigo-text">Result: {{myValuesl}}</h6>
+        <p class="card-label flow-text">form = {{luser}}</p>
     </div>
+</div>
